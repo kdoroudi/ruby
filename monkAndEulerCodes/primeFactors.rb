@@ -1,4 +1,9 @@
 # what are the prime factors of a number
+def primeIs x
+  (2..x-1).each { |y| return false if x % y == 0 }
+  true
+end
+
 def squareroot(number)
   x_n = 2
 
@@ -19,4 +24,11 @@ for i in 2..$check
     i += 1
   end
 end
-# a number is prime if and only if its divisible by only 1 and it self
+for n in 1..factors.length
+  if primeIs(factors(n)) == true
+    prime_factors << factors(n)
+    n +=1
+  else
+    n +=1
+  end
+end
