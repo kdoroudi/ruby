@@ -6,8 +6,8 @@ def anagrams_test(string)
   while i < l
     if string[i] != string[ri]
       puts " not an anagram"
-      #then break #not working!
-      abort
+      return false
+
     elsif string[i] == string[ri]
       i += 1
       ri -= 1
@@ -16,4 +16,5 @@ def anagrams_test(string)
     end
   end
   puts "its an anagram"
+  return true
 end
