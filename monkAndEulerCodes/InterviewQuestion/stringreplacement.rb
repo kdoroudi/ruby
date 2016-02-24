@@ -1,3 +1,4 @@
+# Write a method to replace all spaces in a string with ‘%20’
 def stg_rep(string)
   i = 0
   while i < string.length
@@ -10,6 +11,3 @@ def stg_rep(string)
   end
   print string
 end
-
-
-      
