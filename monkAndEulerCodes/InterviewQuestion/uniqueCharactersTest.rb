@@ -5,12 +5,12 @@ def char_dup_test(string)
     for j in 0..n-1
       if (i != j) && (string[i] == string[j]) then
         #puts "there is a repeat"
-        return true 
+        return false
       end
     end
   end
   #puts "no repeats"
-  return false
+  return true
 end
 
 
