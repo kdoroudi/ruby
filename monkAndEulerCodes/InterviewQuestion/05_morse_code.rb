@@ -46,4 +46,4 @@ def morse_encode_word(word)
 end
 
 
-puts morse_encode "my name is kaveh"
+puts morse_encode " congradulations this code is written in morse code "
