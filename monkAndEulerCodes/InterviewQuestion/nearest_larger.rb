@@ -19,8 +19,8 @@ def nearest_larger(arr, i)    # array = [2,3,4,8], indec [i=1]= 3
       return l
     elsif (r < arr_length) && (arr[r] > arr[i])
       return r
-    else (l < 0 ) && (r >= arr_length)
-      return nill
+    elsif (l < 0 ) && (r >= arr_length)
+      return nil
     end
     d += 1
   end
