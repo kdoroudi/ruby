@@ -48,7 +48,7 @@ class List
     @traversal_count = 0
     @length = 0
   end
-#-------------------------------------------------------
+  #-------------------------------------------------------
   def appends(value)
     new_node = Node.new(value)
     new_node.next_node = @head
@@ -57,7 +57,7 @@ class List
     @tail = @head
     @length +=1
   end
-#------------------------------------------------------
+  #------------------------------------------------------
 
   def prepends(value)
     current = @head
@@ -69,7 +69,7 @@ class List
     self
   end
 
-#-------------------------------------------------------
+  #-------------------------------------------------------
 
   def print
     node = @head
@@ -79,8 +79,10 @@ class List
       puts @length
     end
   end
-#-------------------------------------------------------
-inclure Enumerable
+
+  #-------------------------------------------------------
+  include Enumerable
+
   def each
     return nil if @head.nil?
     value = @head
@@ -117,6 +119,7 @@ class ListIterator
       puts node.value
       node = node.next_node
     end
+  end
 
   def new_list(name_of_the_list) # create a new list
     name_of_the_list = List.new
@@ -127,3 +130,40 @@ class ListIterator
   end
 
 end
+
+
+class List
+  def iterator
+    ListIterator.new(@head)
+  end
+end
+
+class ListIterator
+  def initialize(head)
+  end
+
+  def curr
+  end
+
+  def next
+  end
+
+  def finished?
+  end
+end
+
+list = List.new
+
+iter = ListIterator(list)
+iter = list.iterator
+
+until iter.finished?
+  puts iter.curr
+  iter.next
+end
+
+for(iter = ListIterator(list); iter.finished?; iter.next) {
+  puts iter.curr
+}
+
+

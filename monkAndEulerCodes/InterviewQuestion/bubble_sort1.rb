@@ -3,6 +3,10 @@
 # methodology. (http://en.wikipedia.org/wiki/Bubble_sort)
 #
 
+
+# EVAN: redo this, it's not correct
+
+
 def bubble_sort(arr)
   sorted = false
   until sorted

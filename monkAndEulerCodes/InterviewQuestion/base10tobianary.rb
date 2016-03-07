@@ -1,4 +1,5 @@
-#write a function that counts total number of 1's in a binary format of a number, ex 3->0011 -> 2 ones
+# write a function that counts total number of 1's in a binary format of a
+# number, ex 3->0011 -> 2 ones
 
 def int_to_binary(x)
   p = 0
@@ -18,4 +19,4 @@ int_to_binary(1).count("1")
 int_to_binary(156).count("1")
 int_to_binary(111).count("1")
 int_to_binary(234).count("1")
-int_to_binary(0x).count("1")
+int_to_binary(0).count("1")
