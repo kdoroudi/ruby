@@ -1,44 +1,54 @@
+#!/usr/bin/env ruby
 require "socket"
+
 class Server
-  def initialize( port, ip )
-    @server = TCPServer.open( ip, port )
-    @connections = Hash.new
+  def initialize(host, port)
+    @server = TCPServer.open(host, port)
     @rooms = Hash.new
     @clients = Hash.new
-    @connections[:server] = @server
-    @connections[:rooms] = @rooms
-    @connections[:clients] = @clients
-    run
   end
 
   def run
-    loop {
-      Thread.start(@server.accept) do | client |
-        nick_name = client.gets.chomp.to_sym
-        @connections[:clients].each do |other_name, other_client|
-          if nick_name == other_name || client == other_client
-            client.puts "This username already exist"
-            Thread.kill self
-          end
+    loop do
+      # Accept the socket connection and save it
+      socket = @server.accept
+
+      # Create a new thread and save it
+      thread = Thread.new do
+        name = socket.gets.chomp
+        if @clients.has_key? name
+          socket.puts "This username already exist"
+        else
+          puts "Client '#{name}' has joined"
+          @clients[name] = socket
+          socket.puts "Connection established, Thank you for joining! Happy chatting"
+          listen_user_messages(name, socket)
         end
-        puts "#{nick_name} #{client}"
-        @connections[:clients][nick_name] = client
-        client.puts "Connection established, Thank you for joining! Happy chatting"
-        listen_user_messages( nick_name, client )
       end
-    }.join
+    end
   end
 
-  def listen_user_messages( username, client )
-    loop {
-      msg = client.gets.chomp
-      @connections[:clients].each do |other_name, other_client|
-        unless other_name == username
-          other_client.puts "#{username.to_s}: #{msg}"
+  # Listen for messages on a socket, and relay them to all other clients
+  def listen_user_messages( name, socket )
+    loop do
+      msg = socket.gets
+
+      # If we get nil, the client has disconnected
+      if msg.nil?
+        puts "Client '#{name}' has disconnected"
+        @clients[name].close
+        @clients.delete name
+        return
+      end
+
+      # Send the message to all other clients
+      @clients.each do |other_name, other_client|
+        unless other_name == name
+          other_client.puts "#{name.to_s}: #{msg.chomp}"
         end
       end
-    }
+    end
   end
 end
 
-Server.new( 3000, "localhost" )
+Server.new("localhost", 3000).run
