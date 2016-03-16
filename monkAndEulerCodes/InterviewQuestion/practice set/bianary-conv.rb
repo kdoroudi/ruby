@@ -1,17 +1,24 @@
 def convertor(num)
   number = num.to_i
   bianary = ''
-  while 2 < number
+  if number == 0
+    return 0
+  end
+
+  while 0 < number
     if number % 2 == 0
       number = number / 2
-      bianary << 0
+      bianary << "0"
     else
-      number = (number - 1) / 2
-      bianary << 1
+      number = number  / 2
+      bianary << "1"
     end
 
   end
-   puts bianary
+   return bianary.reverse
 end
 
-convertor(10)
+puts(convertor(156))
+puts(convertor(1))
+puts(convertor(0))
+puts(convertor(128))
