@@ -31,6 +31,18 @@ def most_common_letter(string)
   return [most_common_letter, most_common_letter_count]
 end
 
+def evan_most_common_letter(string)
+  # Collect counts of each letter
+  counts = Hash.new(0)
+  string.chars.each { |c| counts[c] += 1 }
+
+  # Find and return letter with highest count
+  sorted = counts.to_a.sort { |x,y| x[1] <=> y[1] }
+  #sorted = counts.to_a.sort_by { |x| x[1] }
+  sorted.last.first
+end
+
+
 # These are tests to check that your code is working. After writing
 # your solution, they should all print true.
 

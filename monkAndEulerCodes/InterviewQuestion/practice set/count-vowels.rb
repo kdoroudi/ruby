@@ -2,6 +2,9 @@
 # in the string. You may assume that all the letters are lower cased.
 # You can treat "y" as a consonant.
 
+
+#TODO: create a VOWELS string and use VOWELS.include?(letter)
+
 def count_vowels(string)
   count = 0
   i = 0

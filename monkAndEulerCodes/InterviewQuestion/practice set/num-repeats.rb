@@ -4,6 +4,11 @@
 # letters that repeat, not the number of times they repeat in the
 # string.
 
+# TODO: rewrite using a 26-elem array, where each elem is the count
+# for the corresponding letter. Given a letter, index into the array
+# and increment the count. At the end, print each letter whose count
+# is greater than 1.
+
 def num_repeats(string)
   counts = []
 

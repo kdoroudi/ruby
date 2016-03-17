@@ -11,13 +11,23 @@ def longest_word(sentence)
   index_word = 0
   max = 0
   max_index = 0
-  (0..(word_list.length-1)).each do |i|
-    if  max < word_list[i].length
+  (0..(word_list.length-1)).each do |i|  # OR: word_list.each do |word|
+    if max < word_list[i].length
       max = word_list[i].length
       max_index = i
     end
   end
   return word_list[max_index]
+end
+
+
+def evan_longest_word(sentence)
+  max = ''
+  words = sentence.split ' '
+  words.each do |word|
+    max = word if word.length > max.length
+  end
+  max
 end
 
 
